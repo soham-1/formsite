@@ -1,0 +1,234 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href=" {% static 'formapp/src/dist/css/style.min.css' %} " rel="stylesheet" />
+
+    <title>Document</title>
+</head>
+<body>
+    <h3 class="my-3 mx-4">New Master Incident</h3>
+    <h4 class="my-4 mx-4"> <span class="fas fa-list-alt"></span> Initail Reporting</h4>
+    <hr>
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- <h4 class="card-title">Grid With Row Label</h4> -->
+                        <form method="POST" id="frm">
+                            {% csrf_token %}
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-lg-2 col-sm-3 text-right">*location</label>
+                                        <div class="col-lg-10 col-sm-10">                                          
+                                                <div class="col-md-4 col-sm-2">
+                                                        <select name="location" class="form-control" required>
+                                                            <option value="headoffice">Corporate Headoffice</option>
+                                                            <option value="office">office</option>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-lg-2 col-sm-3 text-right">*incident description</label>
+                                        <div class="col-lg-10 col-sm-10">
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                        <textarea class="form-control" name="desc" rows="2" required></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-lg-2 col-sm-3 text-right">*date and time of incident</label>
+                                        <div class="col-lg-10 col-sm-10">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <input type="date" class="form-control"
+                                                        placeholder="date" name="date" required>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="time" step="3600" class="form-control"
+                                                        placeholder="date" name="time" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-lg-2 col-sm-3 text-right">incident location <span class="fas fa-info-circle"></span></label>
+                                        <div class="col-lg-10 col-sm-10">
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                    <textarea class="form-control" name="incLoc" rows="2"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-lg-2 col-sm-3 text-right">initial severity</label>
+                                        <div class="col-lg-10 col-sm-10">
+                                            <div class="row">                                               
+                                                <div class="col-md-4">
+                                                    <select name="severity" class="form-control">
+                                                        <option value="low">low</option>
+                                                        <option value="moderate">moderate</option>
+                                                        <option value="high">high</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                            <label class="col-lg-2 col-sm-3 text-right">suspected cause</label>
+                                            <div class="col-lg-10 col-sm-10">
+                                                <div class="row">
+                                                    <div class="col-md-11">
+                                                        <textarea class="form-control" name="cause" rows="2"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>                                     
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-lg-2 col-sm-3 text-right">immediate actions taken</label>
+                                        <div class="col-lg-10 col-sm-10">
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                    <textarea class="form-control" name="action" rows="2"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-lg-2 col-sm-3 text-right">sub incident types</label>
+                                        <div class="col-lg-10 col-sm-10">
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="customCheck1" name="type" value="envIncident" checked>
+                                                            <label class="custom-control-label" for="customCheck1" checked>Environmental Incident</label>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="customCheck2" name="type" value="injury_illness">
+                                                            <label class="custom-control-label" for="customCheck2">injury/illness</label>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="customCheck3"
+                                                            name="type" value="property">
+                                                            <label class="custom-control-label" for="customCheck3">property damage</label>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="customCheck4"
+                                                            name="type" value="vehicle">
+                                                            <label class="custom-control-label" for="customCheck4">vehicle</label>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="col-lg-2 col-sm-3 text-right">reporter</label>
+                                                    <div class="col-lg-10 col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-11">
+                                                                <input type="text" name="reporter" id="reporter">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <div class="form-actions">
+                                    <div class="text-right">
+                                        <button type="submit" id="submit" class="btn btn-info my-4 mx-4">Submit</button>
+                                        <button type="reset" id="reset1" class="btn btn-dark my-4 mx-4">Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+</body>
+<script>
+    window.onload = function() {
+        let frm = $('#frm');
+        let subbtn = document.getElementById('submit');
+        subbtn.addEventListener('click', subform);
+
+        function subform(e){
+            e.preventDefault();
+            $.ajax({
+                type: frm.attr('method'),
+                url: "{% url 'index' %}",
+                data: frm.serialize(),
+                success: function(data){
+                    if (data['error'] == "noerr") {
+                        alert("form submitted");
+                        document.getElementById('frm').reset();
+                    }
+                    else {
+                        alert("error in form submission. Please try again");
+                    }
+                }
+            });
+        };
+    }
+</script>
+</html>
+
